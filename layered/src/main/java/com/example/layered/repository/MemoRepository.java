@@ -9,4 +9,6 @@ public interface MemoRepository {
     Memo saveMemo(Memo memo);
 
     List<MemoResponseDto> findAllMemos();
+
+    Memo findMemoById(Long id);
 }
