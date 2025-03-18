@@ -6,6 +6,8 @@ import com.example.layered.entity.Memo;
 import com.example.layered.repository.MemoRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MemoServiceImpl implements MemoService {
 
@@ -24,5 +26,10 @@ public class MemoServiceImpl implements MemoService {
         // Inmemory DB에 Memo 저장
         Memo savedMemo = memoRepository.saveMemo(memo);
         return new MemoResponseDto(savedMemo);
+    }
+
+    @Override
+    public List<MemoResponseDto> findAllMemos() {
+        return memoRepository.findAllMemos();
     }
 }
