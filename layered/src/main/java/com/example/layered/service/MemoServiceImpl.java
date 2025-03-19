@@ -24,10 +24,7 @@ public class MemoServiceImpl implements MemoService {
 
         // 요청받은 데이터로 Memo 객체 생성, ID 없음
         Memo memo = new Memo(dto.getTitle(), dto.getContents());
-
-        // Inmemory DB에 Memo 저장
-        Memo savedMemo = memoRepository.saveMemo(memo);
-        return new MemoResponseDto(savedMemo);
+        return memoRepository.saveMemo(memo);
     }
 
     @Override

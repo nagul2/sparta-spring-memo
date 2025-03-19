@@ -6,7 +6,9 @@ import com.example.layered.entity.Memo;
 import java.util.List;
 
 public interface MemoRepository {
-    Memo saveMemo(Memo memo);
+    MemoResponseDto saveMemo(Memo memo);
+
+//    Memo saveMemo(Memo memo);
 
     List<MemoResponseDto> findAllMemos();
 
