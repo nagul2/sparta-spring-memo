@@ -36,13 +36,15 @@ public class MemoServiceImpl implements MemoService {
 
     @Override
     public MemoResponseDto findMemoById(Long id) {
-        Optional<Memo> optionalMemo = memoRepository.findMemoById(id);
+//        Optional<Memo> optionalMemo = memoRepository.findMemoById(id);
+//
+//        if (optionalMemo.isEmpty()) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id);
+//        }
+//        return new MemoResponseDto(optionalMemo.get());
 
-        if (optionalMemo.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id);
-        }
-
-        return new MemoResponseDto(optionalMemo.get());
+        Memo memo = memoRepository.findMemoByIdOrElseThrow(id);
+        return new MemoResponseDto(memo);
     }
 
     @Transactional
@@ -58,8 +60,12 @@ public class MemoServiceImpl implements MemoService {
         if (updatedRow == 0) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id);
         }
-        Optional<Memo> optionalMemo = memoRepository.findMemoById(id);
-        return new MemoResponseDto(optionalMemo.get());
+
+        Memo memo = memoRepository.findMemoByIdOrElseThrow(id);
+        return new MemoResponseDto(memo);
+
+//        Optional<Memo> optionalMemo = memoRepository.findMemoById(id);
+//        return new MemoResponseDto(optionalMemo.get());
 
     }
 
@@ -76,10 +82,11 @@ public class MemoServiceImpl implements MemoService {
         if (updatedTitleRow == 0) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id);
         }
+        Memo memo = memoRepository.findMemoByIdOrElseThrow(id);
+        return new MemoResponseDto(memo);
+//        Optional<Memo> optionalMemo = memoRepository.findMemoById(id);
 
-        Optional<Memo> optionalMemo = memoRepository.findMemoById(id);
-
-        return new MemoResponseDto(optionalMemo.get());
+//        return new MemoResponseDto(optionalMemo.get());
     }
 
     @Override
