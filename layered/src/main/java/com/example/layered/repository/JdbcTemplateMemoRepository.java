@@ -61,8 +61,8 @@ public class JdbcTemplateMemoRepository implements MemoRepository{
     }
 
     @Override
-    public void deleteMemo(Long id) {
-
+    public int deleteMemo(Long id) {
+        return jdbcTemplate.update("delete from memo where id = ?", id);
     }
 
     private RowMapper<MemoResponseDto> memoRowMapper() {

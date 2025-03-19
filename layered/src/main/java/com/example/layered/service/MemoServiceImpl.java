@@ -71,9 +71,9 @@ public class MemoServiceImpl implements MemoService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The title is a required values.");
         }
 
-        int updatedTitle = memoRepository.updateTitle(id, title);
+        int updatedTitleRow = memoRepository.updateTitle(id, title);
 
-        if (updatedTitle == 0) {
+        if (updatedTitleRow == 0) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id);
         }
 
@@ -84,12 +84,12 @@ public class MemoServiceImpl implements MemoService {
 
     @Override
     public void deleteMemo(Long id) {
-//        Memo memo = memoRepository.findMemoById(id);
-//
-//        if (memo == null) {
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id);
-//        }
-//
-//        memoRepository.deleteMemo(id);
+
+        int deletedRow = memoRepository.deleteMemo(id);
+
+        if (deletedRow == 0) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Does not exist id = " + id);
+        }
+
     }
 }
